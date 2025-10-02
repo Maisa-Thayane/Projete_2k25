@@ -1,0 +1,196 @@
+/* Importa a fonte do Google Fonts para um visual mais limpo */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Fonte mais profissional para clínicas */
+    background: linear-gradient(135deg, #E6F0F6, #F0F5F9); /* Fundo em tons de branco e azul claro */
+    color: #333333; /* Texto em cinza escuro para melhor legibilidade */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    background: #FFFFFF; /* Fundo branco e limpo */
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    gap: 20px;
+}
+
+/* --- Seção de Conteúdo Principal (Esquerda) --- */
+
+.esquerda {
+    flex-grow: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.logo h1 {
+    font-size: 3rem;
+    color: #005A9C; /* Azul principal da clínica */
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.texto h2 {
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: #5A5A5A; /* Cinza para um tom mais suave */
+}
+
+.botoes-conteiner {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.botao-exame, .botao-cadastro {
+    background-color: transparent;
+    color: #007ACC; /* Azul de destaque para os botões */
+    border: 2px solid #007ACC;
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao-exame:hover, .botao-cadastro:hover {
+    background-color: #007ACC;
+    color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 122, 204, 0.4);
+    transform: translateY(-2px);
+}
+
+/* --- Seção de Imagens e Faixa (Direita) --- */
+
+.direita {
+    width: 380px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: #F8F9FA; /* Fundo mais claro para a seção de imagens */
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.faixa {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(90deg, #007ACC, #005A9C); /* Gradiente de azuis */
+    border-bottom-left-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    z-index: 2;
+    padding: 0 20px;
+    overflow: hidden;
+    user-select: none;
+    box-sizing: border-box;
+}
+
+.titulo-faixa {
+    color: #FFFFFF; /* Texto branco */
+    font-weight: 700;
+    font-size: 1.4rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+.titulo-faixa:hover {
+    color: #c4dceb; /* Tom mais claro no hover */
+}
+
+/* --- Imagens dos Médicos --- */
+
+.medicos {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    justify-items: center;
+}
+
+.medico-img {
+    width: 140px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 3px solid #007ACC; /* Borda em azul de destaque */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.medico-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 122, 204, 0.5);
+}
+
+/* --- Responsividade --- */
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .direita {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        order: -1;
+    }
+
+    .faixa {
+        width: 100%;
+        border-radius: 0;
+        position: relative;
+        margin-bottom: 20px;
+        height: 60px;
+    }
+
+    .titulo-faixa {
+        font-size: 1.2rem;
+    }
+
+    .medicos {
+        margin-top: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+    }
+
+    .medico-img {
+        width: 100px;
+    }
+
+    .esquerda {
+        padding: 20px;
+        min-width: auto;
+    }
+}

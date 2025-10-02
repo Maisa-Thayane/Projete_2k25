@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAME</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fourth.css') }}" />
+</head>
+
+<body>
+    <div class="pagina-container">
+        <div class="relatorio">
+            <h1>Relatório Médico</h1>
+
+            <div class="linha"><strong>Nome:</strong> Admin Cadastrado </div>
+            <div class="linha"><strong>Idade:</strong> 67 anos</div>
+            <div class="linha"><strong>Data do exame:</strong> 30/09/2025</div>
+
+            <div class="subtitulo">Resultados</div>
+            <div class="linha"><strong>Pressão arterial:</strong> 120/80 mmHg</div>
+            <div class="linha"><strong>Glicose:</strong> 89 mg/dL</div>
+            <div class="linha"><strong>Colesterol:</strong> 165 mg/dL</div>
+            <div class="linha"><strong>Hemoglobina:</strong> 13,8 g/dL</div>
+
+            <div class="subtitulo">Observações</div>
+            <div class="linha">Paciente apresenta níveis dentro da normalidade. Recomendado manter hábitos saudáveis.
+            </div>
+
+            <div class="assinatura">Dr. Fulano de Tal<br>Médico CRM 123456</div>
+        </div>
+        <div class="botoes-conteiner">
+            <a href="{{ url_for('second') }}" class="botao-sair">← Retornar para página inicial</a>
+        </div>
+
+        <div class="rodape-documento">
+            <p>Hospital Exemplo - Rua das Flores, 123 - Cidade - Estado - CEP 12345-678</p>
+            <p>Telefone: (11) 1234-5678 | Email: contato@hospital.com</p>
+        </div>
+    </div>
+</body>
+
+</html>

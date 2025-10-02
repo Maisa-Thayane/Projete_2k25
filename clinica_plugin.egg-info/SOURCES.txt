@@ -1,0 +1,15 @@
+setup.py
+clinica_plugin/IA.py
+clinica_plugin/__init__.py
+clinica_plugin/app.py
+clinica_plugin/criptografia_janela.py
+clinica_plugin/plugin.py
+clinica_plugin.egg-info/PKG-INFO
+clinica_plugin.egg-info/SOURCES.txt
+clinica_plugin.egg-info/dependency_links.txt
+clinica_plugin.egg-info/requires.txt
+clinica_plugin.egg-info/top_level.txt
+clinica_plugin/Banco_Dados/SQlite.py
+clinica_plugin/Banco_Dados/__init__.py
+clinica_plugin/Criptografia/Camadas.py
+clinica_plugin/Criptografia/__init__.py

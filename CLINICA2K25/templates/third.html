@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verificação de Código</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='third.css') }}" />
+</head>
+<body>
+  <main class="caixa" role="main">
+    
+    <!-- Ícone representativo. Usando url_for para o Flask encontrar -->
+    <section class="bloquinho" aria-hidden="true">
+      <img src="{{ url_for('static', filename='imgsC/email.png') }}" alt="Ícone de verificação por e-mail" onerror="this.onerror=null;this.src='https://placehold.co/60x60/162a45/c0faff?text=EMAIL';">
+    </section>
+
+    <!-- Códigos de verificação -->
+    <section class="alinhar" aria-label="Código de Verificação">
+      <h2>Verificação de Código</h2>
+      <p>Por favor, insira o código abaixo:</p>
+    <div class="input-group">
+        <input type="text" class="verification-input-digit" maxlength="1" data-index="0" placeholder="-">
+        <input type="text" class="verification-input-digit" maxlength="1" data-index="1" placeholder="-">
+        <input type="text" class="verification-input-digit" maxlength="1" data-index="2" placeholder="-">
+        <input type="text" class="verification-input-digit" maxlength="1" data-index="3" placeholder="-">
+    </div>
+    </section>
+
+    <!-- Botão de confirmação -->
+    <section>
+      <button type="button" id="confirmButton">
+        Confirmar
+      </button>
+    </section>
+
+    <!-- Parágrafo para exibir mensagens ao usuário. Sem estilos embutidos. -->
+    <p id="messageDisplay"></p>
+    
+  </main>
+
+  <!-- Injeta a URL da página fourth.html no JavaScript -->
+  <script>
+    const fourthPageUrl = "{{ url_for('fourth_page') }}";
+  </script>
+  <!-- Link para o arquivo JavaScript externo. Usando url_for para o Flask encontrar -->
+  <script src="{{ url_for('static', filename='third.js') }}" defer></script>
+</body>
+</html>

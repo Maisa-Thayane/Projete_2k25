@@ -1,0 +1,136 @@
+/* Importa a fonte do Google Fonts para um visual mais limpo */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* --- Variáveis de Cores e Estilos --- */
+:root {
+    --cor-primaria: #005A9C; /* Azul principal */
+    --cor-secundaria: #E6F0F6; /* Azul claro para fundo */
+    --cor-destaque: #007ACC; /* Azul de destaque para botões e links */
+    --cor-fundo: #FFFFFF; /* Fundo branco */
+    --cor-texto: #333333; /* Cinza escuro para textos */
+    --cor-texto-claro: #5A5A5A; /* Cinza para textos secundários */
+    --cor-borda: #DDDDDD; /* Borda cinza suave */
+}
+
+/* --- Estilos Globais e Layout --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--cor-secundaria);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.caixa {
+    background-color: var(--cor-fundo);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid var(--cor-borda);
+}
+
+/* --- Ícone de Verificação --- */
+.bloquinho {
+    margin-bottom: 20px;
+}
+
+.bloquinho img {
+    width: 60px;
+    height: 60px;
+}
+
+/* --- Textos e Título --- */
+.alinhar {
+    margin-bottom: 20px;
+}
+
+.alinhar h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.alinhar p {
+    font-size: 0.95rem;
+    color: var(--cor-texto-claro);
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+
+/* --- Inputs de Código (Verificação) --- */
+.input-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.verification-input-digit {
+    width: 50px;
+    height: 60px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    background-color: var(--cor-fundo);
+    transition: all 0.3s ease;
+}
+
+.verification-input-digit:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
+    transform: scale(1.05);
+}
+
+/* --- Botão de Confirmação --- */
+#confirmButton {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#confirmButton:hover {
+    background-color: var(--cor-destaque);
+    transform: translateY(-2px);
+}
+
+#confirmButton:active {
+    transform: translateY(0);
+}
+
+/* --- Mensagens de Status --- */
+#messageDisplay {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 400px) {
+    .caixa {
+        padding: 20px;
+    }
+
+    .verification-input-digit {
+        width: 45px;
+        height: 55px;
+        font-size: 1.6rem;
+    }
+}

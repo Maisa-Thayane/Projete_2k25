@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='second.css') }}">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="esquerda">
+            <div>
+                <div class="titulo">ACESSE</div>
+                <div class="faixa"></div>
+            </div>
+            <form class="formulario" action="{{ url_for('second') }}" method="post">
+
+                <div class="campo">
+                    <label for="nome">Usuário:</label>
+                    <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+                </div>
+
+                <div class="campo">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                </div>
+
+                <div class="g-recaptcha" data-sitekey="6Ld0EWgrAAAAAFmJXCaBWQ32MwR1kR-vEMkp8GZ9"></div>
+                <button type="submit">Confirmar</button>
+            </form>
+        </div>
+
+        <div class="direita">
+            {# Este bloco exibe mensagens de erro de validação de campo #}
+            {# Ele aparecerá como uma caixa discreta acima do formulário #}
+            {% if error %}
+            <div class="message-box">
+                {{ error }}
+            </div>
+            {% endif %}
+            <div class="canto">
+                <!-- Imagem do médico com fallback para placeholder. Corrigido para usar url_for('static', ...) -->
+            <img src="{{ url_for('static', filename='imgsC/duo.png') }}" class="medico-img" alt="Imagem de um médico"
+                onerror="this.onerror=null;this.src='https://placehold.co/400x400/162a45/c0faff?text=Imagem+Médico';">
+                <!-- Link para cadastro -->
+            <div style="text-align: center; margin-top: 20px; color: #666;">
+                <p>Não tem uma conta? <a href="/cadastro"
+                        style="color: #007bff; text-decoration: none; font-weight: bold;">Cadastre-se aqui</a></p>
+            </div>
+            </div>
+        </div>
+        <!--div class="g-recaptcha" data-sitekey="6Ld0EWgrAAAAAMEfW1hruoOELH9ViJX522cVpNrC"></!--div-->
+
+    </div>
+
+    <!-- Link para o arquivo JavaScript externo. Corrigido para usar url_for('static', ...) -->
+    <script src="{{ url_for('static', filename='second.js') }}" defer></script>
+</body>
+
+</html>

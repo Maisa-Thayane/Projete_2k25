@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CAST</title>
+    <!-- Link para o CSS principal, usando url_for para o Flask encontrar -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+</head>
+<body>
+    <div class="container">
+        
+        <div class="esquerda">
+            <div class="logo">
+                <h1> CENTRO MÉDICO E CLÍNICO </h1>
+            </div>
+            <div class="texto">
+                <h2> Acesse para conferir os resultados dos seus exames. </h2>
+            </div>
+            <div class="botoes-conteiner">
+               <a href="{{ url_for('second') }}" onclick="location.reload()" class="botao-exame"> LOGIN </a>
+               <a href="{{ url_for('cadastro') }}" class="botao-cadastro"> CADASTRO </a>
+            </div>
+        </div>
+
+        <div class="direita">
+            <div class="faixa">
+                <h2 class="titulo-faixa">Acessar outros campos</h2>
+            </div>
+            <div class="medicos">
+                {# Correção dos caminhos das imagens para usar url_for('static', ...) #}
+                <img src="{{ url_for('static', filename='imgsC/DoctorTwo.jpg') }}" class="medico-img" alt="Médico 1" onerror="this.onerror=null;this.src='https://placehold.co/400x400/162a45/c0faff?text=Médico+2';"/>
+                <img src="{{ url_for('static', filename='imgsC/DoctorThree.png') }}" class="medico-img pequeno" alt="Médico 2" onerror="this.onerror=null;this.src='https://placehold.co/400x400/162a45/c0faff?text=Médico+3';"/>
+                <img src="{{ url_for('static', filename='imgsC/DoctorOne.png') }}" class="medico-img medio" alt="Médico 3" onerror="this.onerror=null;this.src='https://placehold.co/400x400/162a45/c0faff?text=Médico+1';"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

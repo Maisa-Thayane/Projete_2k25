@@ -1,0 +1,207 @@
+/*
+ * Arquivo: fourth.css
+ * Descrição: Estilos para o relatório médico, com uma estética profissional e documental.
+ * Autor: [Seu Nome ou Nome da Empresa]
+ * Versão: 1.0
+ */
+
+/* Importa a fonte para um visual profissional e legível */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;700&display=swap');
+
+
+/* --- Variáveis de Cores --- */
+:root {
+  --cor-fundo-corpo: #f0f2f5;       /* Cinza muito claro, quase branco, para o fundo da página */
+  --cor-fundo-relatorio: #ffffff;   /* Fundo branco puro para o relatório */
+  --cor-texto-principal: #212529;   /* Cinza muito escuro para o texto principal */
+  --cor-texto-secundario: #495057;  /* Cinza um pouco mais claro para textos secundários */
+  --cor-linha-divisoria: #dee2e6;   /* Cinza claro para as linhas divisórias */
+  --cor-azul-titulo: #004085;       /* Azul escuro e sóbrio para títulos e destaques */
+  --cor-sombra: rgba(0, 0, 0, 0.1); /* Sombra suave para a elevação */
+}
+
+
+/* --- Estilos de Layout do Corpo --- */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--cor-fundo-corpo);
+  color: var(--cor-texto-principal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+
+/* --- Estilos do Contêiner do Relatório --- */
+.relatorio {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--cor-fundo-relatorio);
+  padding: 60px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px var(--cor-sombra);
+  line-height: 1.6;
+}
+
+/* Título principal do relatório */
+.relatorio h1 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--cor-azul-titulo);
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 3px solid var(--cor-azul-titulo);
+  padding-bottom: 15px;
+}
+
+
+/* --- Estilos para as Linhas de Conteúdo --- */
+.linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cor-linha-divisoria);
+  transition: background-color 0.3s ease;
+}
+
+.linha:hover {
+  background-color: #f8f9fa; /* Um leve destaque ao passar o mouse */
+}
+
+.linha strong {
+  color: var(--cor-texto-principal);
+  font-weight: 500;
+}
+
+
+/* --- Estilos dos Subtítulos --- */
+.subtitulo {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--cor-azul-titulo);
+  margin-top: 35px;
+  margin-bottom: 15px;
+  border-left: 4px solid var(--cor-azul-titulo);
+  padding-left: 10px;
+}
+
+
+/* --- Estilos da Assinatura --- */
+.assinatura {
+  margin-top: 50px;
+  text-align: right;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--cor-texto-secundario);
+  border-top: 1px dashed var(--cor-linha-divisoria);
+  padding-top: 15px;
+}
+
+/* ---Botão--- */ 
+.relatorio-container {
+    display: flex;
+    flex-direction: column; /* Organiza os itens em coluna: relatório, botão e rodapé */
+    align-items: center; /* Centraliza todos os itens horizontalmente */
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Container do botão de saída */
+.botoes-conteiner {
+    margin-top: 30px; /* Adiciona espaçamento entre o relatório e o botão */
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center; /* Centraliza o botão dentro do seu contêiner */
+}
+
+/* Estilo do botão de saída */
+.botao-sair {
+    background-color: transparent;
+    color: #007ACC;
+    border: 2px solid #007ACC;
+    padding: 12px 30px; /* Tamanho mais proporcional */
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block; /* Permite que o link tenha padding e margin */
+}
+
+.botao-sair:hover {
+    background-color: #007ACC;
+    color: #FFFFFF;
+    box-shadow: 0 4px 10px rgba(0, 122, 204, 0.2);
+    transform: translateY(-2px);
+}
+
+.botao-sair:active {
+    transform: translateY(0);
+}
+
+.botao-sair {
+    background-color: transparent;
+    color: #007ACC; /* Azul de destaque para os botões */
+    border: 2px solid #007ACC;
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botao-sair:hover {
+    background-color: #007ACC;
+    color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 122, 204, 0.4);
+    transform: translateY(-2px);
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .relatorio {
+    padding: 30px;
+  }
+
+  .relatorio h1 {
+    font-size: 2rem;
+  }
+
+  .subtitulo {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .relatorio {
+    padding: 20px;
+  }
+
+  .linha {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .linha strong {
+    margin-bottom: 5px;
+  }
+
+.rodape-documento {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6c757d; /* Um cinza mais suave para o texto do rodapé */
+    margin-top: 10px;
+    line-height: 1.4;
+    max-width: 600px; /* Limita a largura para que o texto não se estique demais */
+}
+}

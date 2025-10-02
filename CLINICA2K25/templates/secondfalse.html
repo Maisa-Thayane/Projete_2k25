@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Médico</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='secondfalse.css') }}" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            line-height: 1.6;
+        }
+
+        h1,
+        h2 {
+            color: #1a5276;
+            text-align: center;
+        }
+
+        .report-section {
+            margin-bottom: 25px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+
+        .report-section h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .footer-message {
+            margin-top: 30px;
+            font-style: italic;
+            text-align: center;
+            color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .warning-message {
+            background-color: #fef1e5;
+            border-left: 4px solid #f39c12;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Relatório de Bem-Estar e Saúde</h1>
+        <p>Prezado(a) paciente,</p>
+        <p>Abaixo, apresentamos um relatório geral com sugestões e práticas para a manutenção de uma vida saudável e
+            equilibrada. Este guia serve como um ponto de partida para o autocuidado e bem-estar geral,
+            independentemente de sua condição de saúde específica.</p>
+
+        <div class="warning-message">
+            <p><strong>Aviso Importante:</strong> Este documento contém apenas recomendações gerais. Para uma avaliação
+                completa e conselhos específicos para sua saúde, é fundamental consultar um profissional de saúde
+                qualificado. Mantenha um acompanhamento médico regular.</p>
+        </div>
+
+        <div class="report-section">
+            <h3>1. Nutrição Equilibrada</h3>
+            <ul>
+                <li>Consuma uma variedade de frutas, vegetais e grãos integrais diariamente.</li>
+                <li>Mantenha-se hidratado(a) bebendo bastante água ao longo do dia.</li>
+                <li>Modere o consumo de alimentos processados, ricos em açúcar, sal e gorduras saturadas.</li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h3>2. Atividade Física Regular</h3>
+            <ul>
+                <li>Dedique pelo menos 30 minutos por dia a uma atividade física de sua escolha (caminhada, alongamento,
+                    bicicleta, etc.).</li>
+                <li>Encontre uma atividade que lhe dê prazer para manter a consistência.</li>
+                <li>Lembre-se de fazer um aquecimento antes e alongamentos depois dos exercícios.</li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h3>3. Qualidade do Sono</h3>
+            <ul>
+                <li>Estabeleça uma rotina de sono, indo para a cama e acordando em horários consistentes.</li>
+                <li>Crie um ambiente de sono calmo e escuro.</li>
+                <li>Evite o uso de eletrônicos (celulares, tablets) antes de dormir.</li>
+            </ul>
+        </div>
+
+        <div class="report-section">
+            <h3>4. Saúde Mental e Emocional</h3>
+            <ul>
+                <li>Pratique técnicas de relaxamento como meditação ou respiração profunda para gerenciar o estresse.
+                </li>
+                <li>Dedique tempo para hobbies e atividades que você goste.</li>
+                <li>Mantenha contato com amigos e familiares, fortalecendo suas redes de apoio social.</li>
+            </ul>
+        </div>
+
+        <div class="footer-message">
+            <div class="botoes-conteiner">
+                <a href="{{ url_for('index') }}" class="botao-sair"> Retornar </a>
+            </div>
+            <p>Com os melhores cumprimentos,<br>
+                Sua Equipe de Bem-Estar e Saúde</p>
+        </div>
+    </div>
+</body>
+
+</html>

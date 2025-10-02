@@ -1,0 +1,234 @@
+/* Importa a fonte do Google Fonts para um visual mais limpo */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* --- Estilos Globais e Layout --- */
+
+:root {
+    /* Cores */
+    --cor-primaria: #005A9C; /* Azul principal */
+    --cor-secundaria: #E6F0F6; /* Azul claro para fundo */
+    --cor-destaque: #007ACC; /* Azul de destaque para botões e links */
+    --cor-fundo: #FFFFFF; /* Fundo branco */
+    --cor-texto: #333333; /* Cinza escuro para textos */
+    --cor-texto-claro: #5A5A5A;
+    --cor-borda: #DDDDDD; /* Borda cinza */
+    --cor-erro: #D9534F; /* Vermelho para erros */
+    --cor-sucesso: #5CB85C; /* Verde para sucesso */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--cor-secundaria);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--cor-texto);
+}
+
+.container {
+    background-color: var(--cor-fundo);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid var(--cor-borda);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Cabeçalho --- */
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--cor-primaria);
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 1rem;
+    color: var(--cor-texto-claro);
+    font-weight: 400;
+}
+
+/* --- Formulário --- */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
+}
+
+input.error {
+    border-color: var(--cor-erro);
+}
+
+.required {
+    color: var(--cor-destaque);
+    font-weight: bold;
+}
+
+.error-message {
+    color: var(--cor-erro);
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+}
+
+.success-message {
+    text-align: center;
+    color: var(--cor-sucesso);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(92, 184, 92, 0.1);
+    border: 1px solid var(--cor-sucesso);
+    border-radius: 8px;
+    display: none;
+    animation: fadeAndScaleIn 0.5s ease-in-out;
+}
+
+@keyframes fadeAndScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Botão --- */
+Button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-fundo);
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+Button:hover {
+    background-color: var(--cor-destaque);
+    transform: translateY(-2px);
+}
+
+Button:active {
+    transform: translateY(0);
+}
+
+
+.container-botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+
+/* --- Carregamento --- */
+
+.loading {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--cor-primaria);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Links de Rodapé --- */
+
+.links {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9rem;
+}
+
+.links a {
+    color: var(--cor-destaque);
+    text-decoration: none;
+    font-weight: 500;
+    transition: text-decoration 0.2s;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.links p {
+    margin-bottom: 8px;
+}

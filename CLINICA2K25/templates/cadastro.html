@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Clínica Laboratorial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cadastro.css') }}" />
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>🏥 Clínica Laboratorial </h2>
+            <p>Crie sua conta para acessar nossos serviços</p>
+        </div>
+
+        <form id="cadastroForm">
+            <div class="form-group">
+                <label for="username">Nome Completo <span class="required">*</span></label>
+                <input type="text" id="username" name="username" required>
+                <div class="error-message" id="username-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha <span class="required">*</span></label>
+                <input type="password" id="password" name="password" required minlength="6">
+                <div class="error-message" id="password-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar Senha <span class="required">*</span></label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div class="error-message" id="confirmPassword-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999">
+                <div class="error-message" id="phone-error"></div>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Cadastrando usuário...</p>
+            </div>
+
+            <div class="success-message" id="success-message">
+                ✅ Cadastro realizado com sucesso! Redirecionando...
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn">
+                Cadastrar
+            </button>
+        </form>
+
+        <div class="container-botoes">
+            <div class="links">
+                <p><a href="/second">← Volte para o Login</a></p>
+                <p><a href="/">← Voltar ao início</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('cadastroForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Limpar mensagens de erro anteriores
+            clearErrors();
+
+            // Validar formulário
+            if (!validateForm()) {
+                return;
+            }
+
+            // Mostrar loading
+            showLoading(true);
+
+            // Coletar dados do formulário
+            const formData = {
+                username: document.getElementById('username').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value,
+                phone: document.getElementById('phone').value.trim()
+            };
+
+            try {
+                // Enviar dados para o backend
+                const response = await fetch('/banco/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Sucesso
+                    showSuccess();
+                    setTimeout(() => {
+                        window.location.href = '/second';
+                    }, 2000);
+                } else {
+                    // Erro do servidor
+                    showError('general', result.message);
+                }
+
+            } catch (error) {
+                console.error('Erro:', error);
+                showError('general', 'Erro de conexão. Tente novamente.');
+            } finally {
+                showLoading(false);
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            // Validar nome
+            const username = document.getElementById('username').value.trim();
+            if (!username) {
+                showError('username', 'Nome é obrigatório');
+                isValid = false;
+            } else if (username.length < 2) {
+                showError('username', 'Nome deve ter pelo menos 2 caracteres');
+                isValid = false;
+            }
+
+            // Validar email
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                showError('email', 'E-mail é obrigatório');
+                isValid = false;
+            } else if (!emailRegex.test(email)) {
+                showError('email', 'E-mail inválido');
+                isValid = false;
+            }
+
+            // Validar senha
+            const password = document.getElementById('password').value;
+            if (!password) {
+                showError('password', 'Senha é obrigatória');
+                isValid = false;
+            } else if (password.length < 6) {
+                showError('password', 'Senha deve ter pelo menos 6 caracteres');
+                isValid = false;
+            }
+
+            // Validar confirmação de senha
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (!confirmPassword) {
+                showError('confirmPassword', 'Confirmação de senha é obrigatória');
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                showError('confirmPassword', 'Senhas não coincidem');
+                isValid = false;
+            }
+
+            // Validar telefone (opcional, mas se preenchido deve ser válido)
+            const phone = document.getElementById('phone').value.trim();
+            if (phone) {
+                const phoneRegex = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+                if (!phoneRegex.test(phone)) {
+                    showError('phone', 'Telefone deve estar no formato (11) 99999-9999');
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        function showError(field, message) {
+            const errorElement = document.getElementById(field + '-error');
+            const inputElement = document.getElementById(field);
+
+            if (errorElement && inputElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                inputElement.classList.add('error');
+            } else if (field === 'general') {
+                // Mostrar erro geral
+                const generalError = document.createElement('div');
+                generalError.className = 'error-message';
+                generalError.style.display = 'block';
+                generalError.textContent = message;
+                generalError.id = 'general-error';
+
+                const form = document.getElementById('cadastroForm');
+                form.appendChild(generalError);
+
+                setTimeout(() => {
+                    generalError.remove();
+                }, 5000);
+            }
+        }
+
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            errorElements.forEach(element => {
+                element.style.display = 'none';
+                element.textContent = '';
+            });
+
+            const inputElements = document.querySelectorAll('input');
+            inputElements.forEach(element => {
+                element.classList.remove('error');
+            });
+        }
+
+        function showLoading(show) {
+            const loading = document.getElementById('loading');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (show) {
+                loading.style.display = 'block';
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Cadastrando...';
+            } else {
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Cadastrar';
+            }
+        }
+
+        function showSuccess() {
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+        }
+
+        // Máscara para telefone
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 7) {
+                value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: clinica_plugin
+Version: 0.1.0
+Summary: Plugin de criptografia e banco de dados para sistemas locais
+Author: Seu Nome
+Requires-Dist: cryptography
+Requires-Dist: flask
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: summary
