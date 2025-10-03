@@ -1,2 +1,5 @@
 cryptography
-flask
+Flask
+flask-cors
+flask-mail
+requests

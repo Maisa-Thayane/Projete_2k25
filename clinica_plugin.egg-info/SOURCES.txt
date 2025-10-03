@@ -1,8 +1,11 @@
+MANIFEST.in
+README.md
 setup.py
 clinica_plugin/IA.py
 clinica_plugin/__init__.py
 clinica_plugin/app.py
 clinica_plugin/criptografia_janela.py
+clinica_plugin/executar_janela.bat
 clinica_plugin/plugin.py
 clinica_plugin.egg-info/PKG-INFO
 clinica_plugin.egg-info/SOURCES.txt
