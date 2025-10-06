@@ -28,6 +28,7 @@ class JanelaCriptografia:
         self.resultados = []
         self.chave_publica = ""
         self.chave_privada = ""
+        self.executando = False
 
         self.criar_interface()
         self.verificar_banco()
@@ -253,10 +254,15 @@ class JanelaCriptografia:
         self.root.update_idletasks()
 
     def iniciar_criptografia(self):
+        # Evitar cliques duplicados
+        if self.executando:
+            return
+
         # Limpar resultados anteriores
         self.limpar_resultados()
 
         """Inicia o processo de criptografia em thread separada"""
+        self.executando = True
         self.btn_iniciar.config(state=DISABLED)
         self.progress.start()
         self.status_label.config(text="Executando criptografia...", fg="#ffff00")
@@ -267,7 +273,7 @@ class JanelaCriptografia:
         thread.start()
 
         # Iniciar verificação de queue
-        self.verificar_queue()
+        self.root.after(100, self.verificar_queue)
 
     def executar_criptografia(self):
         """Executa a criptografia dos dados"""
@@ -281,7 +287,7 @@ class JanelaCriptografia:
             self.chave_publica = chave_privada.public_key.format().hex()
 
             self.queue.put(("log", f"Chave Publica ECC: {self.chave_publica}"))
-            #self.queue.put(("log", f"Chave Privada ECC: {self.chave_privada}"))
+            # self.queue.put(("log", f"Chave Privada ECC: {self.chave_privada}"))
 
             # Conectar ao banco
             self.queue.put(("log", "Conectando ao banco de dados..."))
@@ -402,6 +408,13 @@ class JanelaCriptografia:
                         text=dados,
                         fg="#00ff00" if "concluida" in dados.lower() else "#ff0000",
                     )
+                    # Parar quando concluir ou houver erro
+                    if "concluida" in dados.lower() or "erro" in dados.lower():
+                        self.executando = False
+                        try:
+                            self.progress.stop()
+                        except Exception:
+                            pass
                 elif tipo == "resultado":
                     self.adicionar_resultado(dados)
                 elif tipo == "chaves":
@@ -410,8 +423,8 @@ class JanelaCriptografia:
         except queue.Empty:
             pass
 
-        # Continuar verificando se ainda está executando
-        if self.progress.cget("mode") == "indeterminate":
+        # Continuar verificando enquanto estiver executando
+        if self.executando:
             self.root.after(100, self.verificar_queue)
         else:
             self.btn_iniciar.config(state=NORMAL)

@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: Antlion_plugin
+Version: 0.1.0
+Summary: Plugin de criptografia e banco de dados para sistemas locais
+Author: Antlion
+Requires-Python: >=3.9
+Requires-Dist: cryptography
+Requires-Dist: Flask
+Requires-Dist: flask-cors
+Requires-Dist: flask-mail
+Requires-Dist: requests
+Requires-Dist: eciespy
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

@@ -1,5 +1,0 @@
-cryptography
-Flask
-flask-cors
-flask-mail
-requests

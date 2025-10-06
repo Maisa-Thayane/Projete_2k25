@@ -1,8 +1,8 @@
 @echo off
-cd /d "C:\Users\isa14\Downloads\CLINICA2K25\CLINICA2K25"
-call .venv\Scripts\activate
-python criptografia_janela.py
-pause
+setlocal
+
+REM Garantir que o CWD seja a pasta deste script (onde fica criptografia_janela.py)
+cd /d "%~dp0"
 
 title Sistema de Criptografia - Clinica 2K25
 color 0A

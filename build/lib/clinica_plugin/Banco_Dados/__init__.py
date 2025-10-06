@@ -1,1 +1,0 @@
-from .Banco_Dados.SQlite import ClinicPlugin
