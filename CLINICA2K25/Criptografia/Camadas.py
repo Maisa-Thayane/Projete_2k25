@@ -5,9 +5,23 @@ import hashlib  # Gera hashes
 import hmac  # Cria HMACs
 import secrets  # Gera valores aleatórios seguros
 
-# Importa funções da biblioteca ECIES para ECC
+# Importa funções da biblioteca ECIES para ECC. Tenta 'ecies' (original),
+# depois 'eciespy' (pacote frequentemente instalado como alternativa).
+#try:
 from ecies.utils import generate_key  # Gera chaves ECC
 from ecies import encrypt  # Funções para criptografar dados
+    #ECIES_PROVIDER = "ecies"
+"""
+except Exception:
+    try:
+        from eciespy.utils import generate_key
+        from eciespy import encrypt
+        ECIES_PROVIDER = "eciespy"
+    except Exception:
+        raise ImportError(
+            "Nenhum módulo ECIES disponível: instale 'eciespy' no ambiente (pip install eciespy)"
+        )
+        """
 
 from Crypto.Cipher import (
     AES,
@@ -19,8 +33,12 @@ from Crypto.Util.Padding import (
     pad,
 )  # Adiciona padding em dados para cifradores de bloco # Adiciona padding em dados para cifradores de bloco
 
-# Caminho do banco
-db_path = os.path.join(os.getcwd(), "database.db")
+# Caminho do banco: preferir o DATABASE central definido em Banco_Dados.SQlite
+try:
+    from Banco_Dados.SQlite import DATABASE as db_path
+except Exception:
+    # Fallback para manter compatibilidade: usar diretório do pacote
+    db_path = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), "database.db")
 
 
 def ler_usuarios():

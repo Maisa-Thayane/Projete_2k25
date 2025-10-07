@@ -76,7 +76,7 @@ def second():
         ip = request.remote_addr
         redirecionar_para_cowrie(ip)
         session["honeypot_activated"] = True
-        return redirect("http://192.168.0.5/secondfalse.html") #P/ Davi
+        return redirect("http://192.168.0.5") #P/ Davi
 
     def redirecionar_para_cowrie(ip):
         regra = [
@@ -136,7 +136,7 @@ def second():
             score = response.json()["data"]["abuseConfidenceScore"]
             #score = 60; /Teste local
             if score > 20:
-                return redirect("http://192.168.0.5/secondfalse.html")
+                return redirect("http://192.168.0.5")
         except Exception as e:
             return render_template(
                 "second.html", error=f"Erro ao verificar IP: {str(e)}"
@@ -168,7 +168,7 @@ def second():
 
 @app.route("/secondfalse")
 def second_false():
-    return render_template("secondfalse.html")
+    return redirect("http://192.168.0.5")
 
 
 @app.route('/gerar-e-enviar-codigo')

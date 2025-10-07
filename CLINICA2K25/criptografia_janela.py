@@ -12,6 +12,13 @@ import queue
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from Criptografia.Camadas import criptografar_cinco_camadas, generate_key
+# Importar o caminho do banco centralizado
+try:
+    from Banco_Dados.SQlite import DATABASE as CENTRAL_DATABASE
+except Exception:
+    CENTRAL_DATABASE = os.path.join(
+        os.path.abspath(os.path.join(os.path.dirname(__file__), "..")), "database.db"
+    )
 
 
 class JanelaCriptografia:
@@ -238,12 +245,12 @@ class JanelaCriptografia:
 
     def verificar_banco(self):
         """Verifica se o banco de dados existe"""
-        if not os.path.exists("database.db"):
-            self.log("ERRO: Banco de dados 'database.db' não encontrado!")
+        if not os.path.exists(CENTRAL_DATABASE):
+            self.log(f"ERRO: Banco de dados '{CENTRAL_DATABASE}' não encontrado!")
             self.status_label.config(text="Erro: Banco não encontrado", fg="#ff0000")
             self.btn_iniciar.config(state=DISABLED)
         else:
-            self.log("Banco de dados encontrado: database.db")
+            self.log(f"Banco de dados encontrado: {CENTRAL_DATABASE}")
             self.status_label.config(text="Pronto para iniciar", fg="#ffff00")
 
     def log(self, mensagem):
@@ -290,8 +297,8 @@ class JanelaCriptografia:
             # self.queue.put(("log", f"Chave Privada ECC: {self.chave_privada}"))
 
             # Conectar ao banco
-            self.queue.put(("log", "Conectando ao banco de dados..."))
-            conn = sqlite3.connect("database.db")
+            self.queue.put(("log", f"Conectando ao banco de dados: {CENTRAL_DATABASE}..."))
+            conn = sqlite3.connect(CENTRAL_DATABASE)
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
 
