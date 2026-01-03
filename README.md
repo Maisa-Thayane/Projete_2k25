@@ -43,11 +43,10 @@ Este projeto possui **finalidade exclusivamente educacional**. As técnicas apre
 ---
 
 ## Autoria
-
 Projeto desenvolvido em colaboração por:
 
 
 * **Maísa Thayane dos Santos**
-* *(Adicionar nome do(a) colega 1)*
-* *(Adicionar nome do(a) colega 2)*
-* *(Adicionar nome do(a) colega 3)*
+* *Luíza de Lima Gomes*
+* *Juan Carlos Barbosa*
+* *Davi Lourenço dos Santos*
