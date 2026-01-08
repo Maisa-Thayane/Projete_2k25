@@ -47,6 +47,6 @@ Projeto desenvolvido em colaboração por:
 
 
 * **Maísa Thayane dos Santos**
-* *Luíza de Lima Gomes*
-* *Juan Carlos Barbosa*
-* *Davi Lourenço dos Santos*
+* **Luíza de Lima Gomes**
+* **Juan Carlos Barbosa**
+* **Davi Lourenço dos Santos**
